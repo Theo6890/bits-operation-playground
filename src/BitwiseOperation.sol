@@ -18,6 +18,8 @@ contract BitwiseOperation {
     bytes32 public constant DAY_MASK = bytes32(uint256(0xff << 184));
     bytes32 public constant MONTH_MASK = bytes32(uint256(0xff << 176));
     bytes32 public constant YEAR_MASK = bytes32(uint256(0xffff << 160));
+    bytes32 public constant USER_ADDR_MASK =
+        bytes32(uint256(0xffffffffffffffffffffffffffffffffffffffffffff));
 
     function savePackedUserData(
         string memory pseudo,
