@@ -8,8 +8,8 @@ We will look at libraries like: solidstate-contracts and solmate who both uses b
 
 1.  AND: `&`
 2.  OR: `|`
-3.  NOT: `~`
+3.  Shifts: left shift `<<`, right shift `>>`
 4.  XOR: `^`
-5.  NAND: ~(`a & b`)
-6.  NOR: ~(`a | b`)
-7.  Shifts: left shift `<<`, right shift `>>`
+5.  NOT: `~`
+6.  NAND: ~(`a & b`)
+7.  NOR: ~(`a | b`)
