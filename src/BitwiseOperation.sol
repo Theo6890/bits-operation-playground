@@ -11,8 +11,10 @@ contract BitwiseOperation {
      */
     bytes32 public userData;
 
-    bytes32 public constant PSEUDO_MASK =
-        bytes32(uint256(0xffffffffffffffff << 192));
+    /**
+     * @dev 8 first bytes (= 192 bits) occupied by pseudo, bits from 192 to
+     * 184 are reserved to the day
+     */
     bytes32 public constant DAY_MASK = bytes32(uint256(0xff << 184));
     bytes32 public constant MONTH_MASK = bytes32(uint256(0xff << 176));
     bytes32 public constant YEAR_MASK = bytes32(uint256(0xffff << 160));
@@ -35,5 +37,18 @@ contract BitwiseOperation {
 
     function getPseudo() external view returns (string memory) {
         return string(abi.encodePacked(bytes8(userData)));
+    }
+
+    /**
+     * @dev 8 first bytes are occupied by the pseudo, after the mask has been
+     *      applied these bits are free/zeroed. We can now move the day to the
+     *      very left by 8 bytes, which is equal to 64 bits.
+     */
+    function getDay() external view returns (uint8) {
+        return bytes32toUint8(bytes32(uint256(userData & DAY_MASK) << 64));
+    }
+
+    function bytes32toUint8(bytes32 number) public pure returns (uint8) {
+        return uint8(bytes1(number));
     }
 }
