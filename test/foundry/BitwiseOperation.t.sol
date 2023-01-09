@@ -5,11 +5,15 @@ import "forge-std/Test.sol";
 
 import {BitwiseOperation} from "../../src/BitwiseOperation.sol";
 
+import {BitwiseOperationFixtures} from "./BitwiseOperationFixtures.sol";
+
 contract BitwiseOperationTest is Test {
     BitwiseOperation public bit;
+    BitwiseOperationFixtures public fixtures;
 
     function setUp() public {
         bit = new BitwiseOperation();
+        fixtures = new BitwiseOperationFixtures();
     }
 
     /*//////////////////////////////////////////////////////////////
@@ -52,11 +56,11 @@ contract BitwiseOperationTest is Test {
     //////////////////////////////////////////////////////////////*/
     function _savePackedUserData() internal {
         bit.savePackedUserData(
-            "rdmPsdo1",
-            1,
-            4,
-            1984,
-            0x49879f8eC1e36F659E4e576bf0AeBf324eFeD1d4
+            fixtures.USER_PSEUDO(),
+            fixtures.USER_DAY(),
+            fixtures.USER_MONTH(),
+            fixtures.USER_YEAR(),
+            fixtures.USER()
         );
     }
 
@@ -67,6 +71,6 @@ contract BitwiseOperationTest is Test {
 
     function test_savePackedUserData_checkSavedPseudo() public {
         _savePackedUserData();
-        assertEq(bit.getPseudo(), "rdmPsdo1");
+        assertEq(bit.getPseudo(), fixtures.USER_PSEUDO());
     }
 }
