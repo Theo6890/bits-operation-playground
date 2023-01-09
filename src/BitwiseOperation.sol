@@ -16,4 +16,20 @@ contract BitwiseOperation {
     bytes32 public constant DAY_MASK = bytes32(uint256(0xff << 184));
     bytes32 public constant MONTH_MASK = bytes32(uint256(0xff << 176));
     bytes32 public constant YEAR_MASK = bytes32(uint256(0xffff << 160));
+
+    function savePackedUserData(
+        string memory pseudo,
+        uint8 day,
+        uint8 month,
+        uint16 year,
+        address user
+    ) public {
+        require(bytes(pseudo).length <= 8, "pseudo max 8 char");
+
+        userData = bytes32(bytes(pseudo));
+        userData |= bytes32(uint256(day)) << 184;
+        userData |= bytes32(uint256(month)) << 176;
+        userData |= bytes32(uint256(year)) << 160;
+        userData |= bytes32(uint256(uint160(user)));
+    }
 }
