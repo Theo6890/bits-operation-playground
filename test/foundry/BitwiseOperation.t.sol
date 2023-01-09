@@ -35,6 +35,19 @@ contract BitwiseOperationTest is Test {
         );
     }
 
+    function test_constant_UserAddrMask() public {
+        assertEq(
+            uint256(bit.USER_ADDR_MASK()),
+            // bytes8 at 0 for pseudo; bytes1 at 0 for day; bytes1 at 1 for month; 22 bytes at 0
+            0x000000000000000000000ffffffffffffffffffffffffffffffffffffffffffff
+        );
+        assertEq(
+            uint256(bit.USER_ADDR_MASK()),
+            // bytes8 at 0 for pseudo; bytes1 at 0 for day; bytes1 at 1 for month; 22 bytes at 0
+            0xffffffffffffffffffffffffffffffffffffffffffff
+        );
+    }
+
     function test_constant_YearMask() public {
         assertEq(
             uint256(bit.YEAR_MASK()),
