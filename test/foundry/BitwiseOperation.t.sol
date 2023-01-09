@@ -46,4 +46,22 @@ contract BitwiseOperationTest is Test {
             0x00000000000000000000ffff0000000000000000000000000000000000000000
         );
     }
+
+    /*//////////////////////////////////////////////////////////////
+                                 PACKING LOGIC
+    //////////////////////////////////////////////////////////////*/
+    function _savePackedUserData() internal {
+        bit.savePackedUserData(
+            "rdmPsdo1",
+            1,
+            4,
+            1984,
+            0x49879f8eC1e36F659E4e576bf0AeBf324eFeD1d4
+        );
+    }
+
+    function test_log_userData() public {
+        _savePackedUserData();
+        emit log_named_bytes32("userData", bit.userData());
+    }
 }
