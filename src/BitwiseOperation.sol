@@ -50,7 +50,30 @@ contract BitwiseOperation {
         return bytes32toUint8(bytes32(uint256(userData & DAY_MASK) << 64));
     }
 
+    function getMonth() external view returns (uint8) {
+        return bytes32toUint8(bytes32(uint256(userData & MONTH_MASK) << 72));
+    }
+
+    /**
+     * @dev As solidity uses little endian, the most significant byte is on
+     *      the right which is why taking only a uint160 on bytes32 will
+     *      result in casting bytes20 on the most right end.
+     *      As the user address is stored on the very right side we just have
+     *      to cast the bytes32 in uint160 (compulsory cast to uint256 before)
+     */
+    function getUser() external view returns (address) {
+        return address(uint160(uint256(userData)));
+    }
+
+    function getYear() external view returns (uint16) {
+        return bytes32toUint16(bytes32(uint256(userData & YEAR_MASK) << 80));
+    }
+
     function bytes32toUint8(bytes32 number) public pure returns (uint8) {
         return uint8(bytes1(number));
+    }
+
+    function bytes32toUint16(bytes32 number) public pure returns (uint16) {
+        return uint16(bytes2(number));
     }
 }
