@@ -32,4 +32,8 @@ contract BitwiseOperation {
         userData |= bytes32(uint256(year)) << 160;
         userData |= bytes32(uint256(uint160(user)));
     }
+
+    function getPseudo() external view returns (string memory) {
+        return string(abi.encodePacked(bytes8(userData & PSEUDO_MASK)));
+    }
 }
