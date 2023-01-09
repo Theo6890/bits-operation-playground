@@ -64,4 +64,9 @@ contract BitwiseOperationTest is Test {
         _savePackedUserData();
         emit log_named_bytes32("userData", bit.userData());
     }
+
+    function test_savePackedUserData_checkSavedPseudo() public {
+        _savePackedUserData();
+        assertEq(bit.getPseudo(), "rdmPsdo1");
+    }
 }
