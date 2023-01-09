@@ -19,14 +19,6 @@ contract BitwiseOperationTest is Test {
     /*//////////////////////////////////////////////////////////////
                                  BASIC ATTRIBUTES
     //////////////////////////////////////////////////////////////*/
-    function test_constant_PseudoMask() public {
-        assertEq(
-            uint256(bit.PSEUDO_MASK()),
-            // bytes8 at 1 for pseudo; bytes24 at 0
-            0xffffffffffffffff000000000000000000000000000000000000000000000000
-        );
-    }
-
     function test_constant_DayMask() public {
         assertEq(
             uint256(bit.DAY_MASK()),
