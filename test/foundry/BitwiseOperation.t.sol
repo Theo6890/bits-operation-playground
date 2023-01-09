@@ -65,4 +65,9 @@ contract BitwiseOperationTest is Test {
         _savePackedUserData();
         assertEq(bit.getPseudo(), fixtures.USER_PSEUDO());
     }
+
+    function test_savePackedUserData_checkSavedDay() public {
+        _savePackedUserData();
+        assertEq(bit.getDay(), fixtures.USER_DAY());
+    }
 }
