@@ -34,6 +34,6 @@ contract BitwiseOperation {
     }
 
     function getPseudo() external view returns (string memory) {
-        return string(abi.encodePacked(bytes8(userData & PSEUDO_MASK)));
+        return string(abi.encodePacked(bytes8(userData)));
     }
 }
