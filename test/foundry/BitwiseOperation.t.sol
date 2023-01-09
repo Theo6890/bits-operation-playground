@@ -19,11 +19,26 @@ contract BitwiseOperationTest is Test {
     /*//////////////////////////////////////////////////////////////
                                  BASIC ATTRIBUTES
     //////////////////////////////////////////////////////////////*/
+    /**
+     *@dev if bytes do not fill a bytes32, it is always padded with zero on
+     *     the LEFT side, which means we can omit 0 on the LEFT side. This is
+     *     due to solidity using little endian ordering
+     */
     function test_constant_DayMask() public {
         assertEq(
             uint256(bit.DAY_MASK()),
             // bytes8 at 0 for pseudo; bytes1 at 1 for day; bytes23 at 0
             0x0000000000000000ff0000000000000000000000000000000000000000000000
+        );
+        assertEq(
+            uint256(bit.DAY_MASK()),
+            // bytes8 at 0 for pseudo; bytes1 at 1 for day; bytes23 at 0
+            0xff0000000000000000000000000000000000000000000000
+        );
+        assertFalse(
+            uint256(bit.DAY_MASK()) ==
+                // bytes8 at 0 for pseudo; bytes1 at 1 for day; bytes23 at 0
+                0x0000000000000000ff
         );
     }
 
