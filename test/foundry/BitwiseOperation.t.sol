@@ -3,7 +3,7 @@ pragma solidity ^0.8.13;
 
 import "forge-std/Test.sol";
 
-import "../../src/BitwiseOperation.sol";
+import {BitwiseOperation} from "../../src/BitwiseOperation.sol";
 
 contract BitwiseOperationTest is Test {
     BitwiseOperation public bit;
