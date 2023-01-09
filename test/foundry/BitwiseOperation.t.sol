@@ -3,19 +3,19 @@ pragma solidity ^0.8.13;
 
 import "forge-std/Test.sol";
 
-import "../src/Token.sol";
+import "../../src/BitwiseOperation.sol";
 
-contract TokenTest is Test {
-    Token public t;
+contract BitwiseOperationTest is Test {
+    BitwiseOperation public bit;
 
     function setUp() public {
-        t = new Token();
+        bit = new BitwiseOperation();
     }
 
     /*//////////////////////////////////////////////////////////////
                                  BASIC ATTRIBUTES
     //////////////////////////////////////////////////////////////*/
-    function testName() public {
-        assertEq(t.name(), "Token");
+    function testTruthy() public {
+        assertTrue(true);
     }
 }

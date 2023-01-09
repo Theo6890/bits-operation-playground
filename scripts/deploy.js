@@ -2,15 +2,17 @@ const hre = require('hardhat');
 
 // npx hardhat run --network goerli scripts/deploy.js
 async function main() {
-    const Token = await hre.ethers.getContractFactory('Token');
-    const token = await Token.deploy();
+    const BitwiseOperation = await hre.ethers.getContractFactory(
+        'BitwiseOperation'
+    );
+    const bitwiseoperation = await BitwiseOperation.deploy();
 
-    await token.deployed();
+    await bitwiseoperation.deployed();
 
-    console.log(`Deployed to ${token.address}`);
+    console.log(`Deployed to ${bitwiseoperation.address}`);
 
     await hre.run('verify:verify', {
-        address: token.address,
+        address: bitwiseoperation.address,
         // see: https://hardhat.org/hardhat-runner/plugins/nomiclabs-hardhat-etherscan#using-programmatically
         constructorArguments: [],
     });
